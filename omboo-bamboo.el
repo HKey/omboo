@@ -33,6 +33,8 @@
 
 ;;;; Variables
 
+(defvar omboo-bamboo-ignore-empty-groups-p t)
+
 (defvar omboo-bamboo--feed-integration-table nil)
 
 (defvar omboo-bamboo--group-integration-table nil)
@@ -554,12 +556,20 @@
    :url     (omboo-bookmark-bookmark-feed  bookmark)
    :webpage (omboo-bookmark-bookmark-url   bookmark)))
 
+(defun omboo-bamboo--empty-group-p (group)
+  (and (null (omboo-bamboo-data-feeds group))
+       (-every-p #'omboo-bamboo--empty-group-p
+                 (omboo-bamboo-data-groups group))))
+
 (defun omboo-bamboo--convert-directory (directory)
   (omboo-bamboo-make-group
    :name (omboo-bookmark-directory-title directory)
    :groups (--keep
             (when (omboo-bookmark-directory-p it)
-              (omboo-bamboo--convert-directory it))
+              (let ((group (omboo-bamboo--convert-directory it)))
+                (unless (and omboo-bamboo-ignore-empty-groups-p
+                             (omboo-bamboo--empty-group-p group))
+                  group)))
             (omboo-bookmark-directory-children directory))
    :feeds (--keep
            (when (and (omboo-bookmark-bookmark-p it)
