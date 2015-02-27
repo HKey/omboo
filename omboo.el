@@ -26,6 +26,7 @@
 
 (require 'omboo-bookmark)
 (require 'omboo-bamboo)
+(require 'omboo-netscape)
 
 ;;;; Variables
 
@@ -73,6 +74,14 @@ The directories contain bookmark org-mode files.")
    json-file
    omboo-bookmarks
    dont-backup))
+
+;; Netscape Bookmark
+
+;;;###autoload
+(defun omboo-export-netscape-bookmark (bookmark-file)
+  (interactive "Fbookmark file: ")
+  (omboo-netscape-export-to-file bookmark-file
+                                 omboo-bookmarks))
 
 (provide 'omboo)
 ;;; omboo.el ends here
