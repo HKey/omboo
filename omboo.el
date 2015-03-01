@@ -62,7 +62,7 @@ The directories contain bookmark org-mode files.")
 
 ;;;###autoload
 (defun omboo-output-bamboo-feeds-json (json-file)
-  (interactive "ffeeds.json: ")
+  (interactive "Ffeeds.json: ")
   (omboo-bamboo-output-json-file
    (omboo-bamboo-convert-bookmark-objects-as-root omboo-bookmarks)
    json-file))
