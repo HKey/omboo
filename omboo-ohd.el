@@ -58,6 +58,7 @@
 
 (defun omboo-ohd-parse-file (file)
   (with-temp-buffer
+    (setq default-directory (file-name-directory file))
     (insert-file-contents file)
     (org-mode)
     (omboo-ohd--parse-child-headlines
