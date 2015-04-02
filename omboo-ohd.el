@@ -56,7 +56,6 @@
   (org-element-map (org-element-contents element)
       'headline #'omboo-ohd--parse-headline nil nil 'headline))
 
-;;;###autoload
 (defun omboo-ohd-parse-file (file)
   (with-temp-buffer
     (insert-file-contents file)

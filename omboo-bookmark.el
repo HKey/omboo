@@ -123,7 +123,6 @@
 
 ;; Parsing
 
-;;;###autoload
 (defun omboo-bookmark-parse-file (file)
   (-keep #'omboo-bookmark--convert-headline
          (omboo-ohd-parse-file file)))
@@ -140,7 +139,6 @@
      :title    (file-name-base (directory-file-name directory))
      :children children)))
 
-;;;###autoload
 (defun omboo-bookmark-parse-directory (directory &optional recursive)
   (--keep
    (if (file-directory-p it)
@@ -151,7 +149,6 @@
        (omboo-bookmark--parse-file-as-directory it)))
    (directory-files directory t)))
 
-;;;###autoload
 (defun omboo-bookmark-parse-files (files)
   (--keep
    (if (file-directory-p it)
@@ -163,7 +160,6 @@
 
 ;; Saving and Loading
 
-;;;###autoload
 (defun omboo-bookmark-save-file (file bookmarks)
   (with-temp-file file
     (insert ";; -*- mode: emacs-lisp -*-\n"
@@ -171,7 +167,6 @@
              `(list
                ,@(-map #'omboo-bookmark--to-generate-form bookmarks))))))
 
-;;;###autoload
 (defun omboo-bookmark-load-file (file)
   (with-temp-buffer
     (insert-file-contents file)

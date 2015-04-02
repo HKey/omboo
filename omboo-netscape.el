@@ -62,7 +62,6 @@
   (or omboo-netscape-coding-system
       buffer-file-coding-system))
 
-;;;###autoload
 (defun omboo-netscape-convert (bookmarks)
   (format "\
 <!DOCTYPE NETSCAPE-Bookmark-file-1>
@@ -82,7 +81,6 @@
             (coding-system-base (omboo-netscape--coding-system))))
           (omboo-netscape--convert-objects bookmarks)))
 
-;;;###autoload
 (defun omboo-netscape-export-to-file (file bookmarks)
   (with-temp-file file
     (setq buffer-file-coding-system (omboo-netscape--coding-system))
