@@ -24,18 +24,31 @@
 
 ;;; Code:
 
-(require 'cl-lib)
+(require 'eieio)
 (require 'org)
 (require 'org-element)
 
 
-;;;; Objects
+;;;; Classes
 
-(cl-defstruct (omboo-ohd-headline
-               (:constructor omboo-ohd-make-headline))
-  title
-  children
-  org-element)
+(defclass omboo-ohd-headline ()
+  ((title
+    :type     string
+    :initarg  :title
+    :accessor omboo-ohd-headline-title)
+   (children
+    :type     list
+    :initarg  :children
+    :accessor omboo-ohd-headline-children)
+   (org-element
+    :type     list
+    :initarg  :org-element
+    :accessor omboo-ohd-headline-org-element)))
+
+(defun omboo-ohd-make-headline (&rest keys)
+  (apply #'make-instance
+         'omboo-ohd-headline
+         keys))
 
 ;;;; Functions
 
