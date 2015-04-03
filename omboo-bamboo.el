@@ -521,7 +521,7 @@
   (json-encode-plist
    (omboo-bamboo--convert-to-json-plist object)))
 
-(defun omboo-bamboo-output-json-file (object file)
+(defun omboo-bamboo-export-to-json-file (object file)
   (with-temp-file file
     (insert
      (omboo-bamboo-convert-to-json object))))
@@ -670,7 +670,7 @@
                                                      dont-backup)
   (unless dont-backup
     (copy-file json-file (concat json-file ".bak") t t))
-  (omboo-bamboo-output-json-file
+  (omboo-bamboo-export-to-json-file
    (omboo-bamboo-integrate
     (omboo-bamboo-convert-bookmark-objects-as-root bookmarks)
     (omboo-bamboo-parse-json-file json-file))

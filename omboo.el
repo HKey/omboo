@@ -61,9 +61,9 @@ The directories contain bookmark org-mode files.")
 ;; Bamboo
 
 ;;;###autoload
-(defun omboo-output-bamboo-feeds-json (json-file)
+(defun omboo-export-to-bamboo-feeds-json (json-file)
   (interactive "Ffeeds.json: ")
-  (omboo-bamboo-output-json-file
+  (omboo-bamboo-export-to-json-file
    (omboo-bamboo-convert-bookmark-objects-as-root omboo-bookmarks)
    json-file))
 
@@ -78,7 +78,7 @@ The directories contain bookmark org-mode files.")
 ;; Netscape Bookmark
 
 ;;;###autoload
-(defun omboo-export-netscape-bookmark (bookmark-file)
+(defun omboo-export-to-netscape-bookmark (bookmark-file)
   (interactive "Fbookmark file: ")
   (omboo-netscape-export-to-file bookmark-file
                                  omboo-bookmarks))
