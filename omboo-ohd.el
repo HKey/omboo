@@ -27,6 +27,13 @@
 (require 'eieio)
 (require 'org)
 (require 'org-element)
+(require 'dash)
+
+
+;;;; Variables
+
+(defvar omboo-ohd-ignore-archived-headlines-p t
+  "Non-nil means to ignore archived headlines when parsing")
 
 
 ;;;; Classes
@@ -60,14 +67,17 @@
 
 (defun omboo-ohd--parse-headline (headline)
   (let ((children (omboo-ohd--parse-child-headlines headline))
-        (title (org-element-property :raw-value headline)))
-    (omboo-ohd-make-headline :title title
-                             :children children
-                             :org-element headline)))
+        (title (org-element-property :raw-value headline))
+        (archivedp (org-element-property :archivedp headline)))
+    (unless (and omboo-ohd-ignore-archived-headlines-p archivedp)
+      (omboo-ohd-make-headline :title title
+                               :children children
+                               :org-element headline))))
 
 (defun omboo-ohd--parse-child-headlines (element)
-  (org-element-map (org-element-contents element)
-      'headline #'omboo-ohd--parse-headline nil nil 'headline))
+  (-non-nil
+   (org-element-map (org-element-contents element)
+       'headline #'omboo-ohd--parse-headline nil nil 'headline)))
 
 (defun omboo-ohd-parse-file (file)
   (with-temp-buffer
