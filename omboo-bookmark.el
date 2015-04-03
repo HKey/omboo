@@ -46,17 +46,17 @@
 
 (defclass omboo-bookmark-bookmark ()
   ((title
-    :type     string
-    :initarg  :title
-    :accessor omboo-bookmark-bookmark-title)
+    :type    string
+    :initarg :title
+    :reader  omboo-bookmark-bookmark-title)
    (url
-    :type     string
-    :initarg  :url
-    :accessor omboo-bookmark-bookmark-url)
+    :type    string
+    :initarg :url
+    :reader  omboo-bookmark-bookmark-url)
    (feed
-    :type     (or string null)
-    :initarg  :feed
-    :accessor omboo-bookmark-bookmark-feed)))
+    :type    (or string null)
+    :initarg :feed
+    :reader  omboo-bookmark-bookmark-feed)))
 
 (defun omboo-bookmark-make-bookmark (&rest keys)
   (apply #'make-instance
@@ -73,13 +73,13 @@
 
 (defclass omboo-bookmark-directory ()
   ((title
-    :type     string
-    :initarg  :title
-    :accessor omboo-bookmark-directory-title)
+    :type    string
+    :initarg :title
+    :reader  omboo-bookmark-directory-title)
    (children
-    :type     list
-    :initarg  :children
-    :accessor omboo-bookmark-directory-children)))
+    :type    list
+    :initarg :children
+    :reader  omboo-bookmark-directory-children)))
 
 (defun omboo-bookmark-make-directory (&rest keys)
   (apply #'make-instance
