@@ -58,6 +58,15 @@ The directories contain bookmark org-mode files.")
         (omboo-bookmark-parse-files omboo-target-files))
   (omboo-save-bookmarks))
 
+;;;###autoload
+(defun omboo-open-at-point ()
+  "Open a bookmark url at the current point"
+  (interactive)
+  (let ((url (omboo-bookmark-get-url-at-point)))
+    (if url
+        (browse-url url)
+      (user-error "Not a bookmark"))))
+
 ;; Bamboo
 
 ;;;###autoload

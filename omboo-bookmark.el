@@ -172,5 +172,12 @@
     (insert-file-contents file)
     (eval (read (buffer-substring (point-min) (point-max))))))
 
+;; Utilities
+
+(defun omboo-bookmark-get-url-at-point ()
+  "Get a bookmark url at the current point"
+  (org-entry-get (point)
+                 (substring (symbol-name omboo-bookmark-url-property) 1)))
+
 (provide 'omboo-bookmark)
 ;;; omboo-bookmark.el ends here
