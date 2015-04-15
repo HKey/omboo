@@ -176,8 +176,12 @@
 
 (defun omboo-bookmark-get-url-at-point ()
   "Get a bookmark url at the current point"
-  (org-entry-get (point)
-                 (substring (symbol-name omboo-bookmark-url-property) 1)))
+  (let* ((marker (get-text-property (point) 'org-marker))
+         (point (if marker marker (point)))
+         (buffer (if marker (marker-buffer marker) (current-buffer))))
+    (with-current-buffer buffer
+      (org-entry-get point
+                     (substring (symbol-name omboo-bookmark-url-property) 1)))))
 
 (provide 'omboo-bookmark)
 ;;; omboo-bookmark.el ends here
