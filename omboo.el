@@ -1,4 +1,4 @@
-;;; omboo.el --- Org-Mode as BOOkmark              -*- lexical-binding: t; -*-
+;;; omboo.el --- Manage browser bookmarks in org-mode -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2015  Hiroki YAMAKAWA
 
